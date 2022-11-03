@@ -1,0 +1,42 @@
+{% extends 'xvector_Home.html'%}
+{% block script %}
+{% load static %}
+<link rel='stylesheet' type='text/css' media='screen' href="{% static '/xvector.css' %}">
+    <script defer src="{% static '/xvectorplot.js' %}"></script>
+    <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
+    {% endblock %}
+{% block content %}
+<div style="display:flex; flex-direction: column; gap:50px">
+    <div style="display:flex; gap: 20px;">
+        <form onsubmit="return agg()">
+            <select id="dataset" onchange="onselcmpt()" name="dataset"></select>
+            <select id="c1optioncmp">
+            <option>Select</option>
+            </select>
+            <select id="operation">
+                <option value="max">Max</option>
+                <option value="min">Min</option>
+                <option value="sum">Sum</option>
+            </select>
+            <input class="btn" type="submit" value="Compute">
+        </form>
+        <div id="funvalue">
+            99
+        </div>
+    </div>
+    
+<div>
+    <form onsubmit="return plot()">
+        <select id="datasetplot" onchange="onsel()" name="plotdataset"></select>
+        <select id="c1option" name="plotdataset">
+            <option>Select Col1</option>
+        </select>
+        <select id="c2option" name="plotdataset">
+            <option>Select Col1</option>
+        </select>
+        <input class="btn" type="submit" value="Plot">
+    </form>
+</div>
+<div id="grp" style="width:500px;height:250px;padding: 10px;"></div>
+</div>
+{% endblock %}

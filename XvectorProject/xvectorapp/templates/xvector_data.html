@@ -1,0 +1,26 @@
+{% extends 'xvector_Home.html'%}
+{% block script %}
+{% load static %}
+<link rel='stylesheet' type='text/css' media='screen' href="{% static '/xvector.css'%}">
+    <script defer src="{% static '/xvectordata.js'%}"></script>
+    {% endblock %}
+
+    
+{% block content %}
+{% if data %}
+    <table>
+    {% for i in data %}
+    <tr><td>{{ i.file_name }}</td></tr>
+    {% endfor %}
+    </table>
+    {% endif %}
+<form action="upload/"  method="POST" enctype="multipart/form-data">
+    <input id="file" type="file" name="cfile" accept=".csv" required><br>
+    <label for="file" style="font-size:12px ;"> Upload CSV file only</label><br><br>
+    <input id="name" type="text" name="fname" size="11" placeholder="<data file name>" required>
+    {% if dupli %}
+    <p style="color:red ;"> Already file present with same name</p>
+    {% endif %}
+    <input class="btn" type="submit" value="Upload">
+</form>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Xvector</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    {% load static %}
+    <link rel='stylesheet' type='text/css' media='screen' href="{% static '/xvector.css' %}">
+    {% block script %}
+    <script defer src="{% static '/xvector.js' %}"></script>
+    {% endblock %}
+</head>
+<body>
+    <div class="main">
+        <div class="navbar">
+            <div class="logo">
+                <img src="{% static '/logo.png' %}" alt="logo" width="50px" height="50px">
+            </div>
+            <div class="navitem">
+                <ul>
+                    <li id="home"><a href="{% url 'index' %}" onclick="home()">Home</a></li>
+                    <li id="data"><a href="{% url 'data' %}" onclick="data()">Data</a></li>
+                    <li id="plot"><a href="{% url 'plot' %}" onclick="plot()">Plot</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="content">
+        {% block content %}
+            {% if error %}
+            <p>Same file name</p>
+            {% endif %}
+            <h1>Home Page</h1>
+        {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
